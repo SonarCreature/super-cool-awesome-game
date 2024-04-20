@@ -16,14 +16,15 @@ func _process(delta):
 	var new_position = board.get_map().local_to_map(get_global_mouse_position())
 	update_cursor(new_position)
 	if Input.is_action_just_pressed("left_click"):
-		if is_occupied(new_position):
-			active_unit = board.get_cell_data(new_position).occupant
-			active_unit.display_movement()
-		else:
-			if active_unit != null:
-				print(active_unit.get_move_cells())
-				try_move(active_unit, new_position)
-				wipe_highlight()
+		if new_position in board.map_data:
+			if is_occupied(new_position):
+				active_unit = board.get_cell_data(new_position).occupant
+				active_unit.display_movement()
+			else:
+				if active_unit != null:
+					print(active_unit.get_move_cells())
+					try_move(active_unit, new_position)
+					wipe_highlight()
 		#print(board.get_cell_data(new_position).position)
 	pass
 
