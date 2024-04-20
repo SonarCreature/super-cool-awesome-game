@@ -4,3 +4,4 @@ res://Levels/Board.tscn
 res://Units/Unit.gd
 res://Levels/Board.gd
 res://cellData.gd
+res://Levels/BoardController.gd

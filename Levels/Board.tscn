@@ -1,8 +1,9 @@
-[gd_scene load_steps=7 format=3 uid="uid://cqsacwsrw30ag"]
+[gd_scene load_steps=8 format=3 uid="uid://cqsacwsrw30ag"]
 
 [ext_resource type="Texture2D" uid="uid://bikbavq7tq33f" path="res://Art/Tilemaps/tilemap_packed.png" id="1_h0dxr"]
 [ext_resource type="Script" path="res://Levels/Board.gd" id="1_iwyvv"]
 [ext_resource type="Texture2D" uid="uid://drqn5guqiox54" path="res://Art/Tilemaps/tilemap_packed (2).png" id="2_g27bf"]
+[ext_resource type="Script" path="res://Levels/BoardController.gd" id="4_t1kwp"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8gway"]
 texture = ExtResource("2_g27bf")
@@ -280,7 +281,7 @@ custom_data_layer_0/type = 0
 sources/0 = SubResource("TileSetAtlasSource_8gway")
 sources/1 = SubResource("TileSetAtlasSource_ao4x4")
 
-[node name="BoardController" type="Node2D" node_paths=PackedStringArray("map")]
+[node name="Board" type="Node2D" node_paths=PackedStringArray("map")]
 script = ExtResource("1_iwyvv")
 map = NodePath("TileMap")
 
@@ -292,4 +293,8 @@ layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 0, 131072, 1, 0, 196608,
 layer_1/name = "Obstacles"
 layer_1/tile_data = PackedInt32Array(0, 524289, 3, 9, 655361, 3, 524297, 655361, 5, 524288, 524289, 5, 524289, 589825, 3, 524290, 589825, 3, 524291, 589825, 3, 524292, 589825, 3, 524293, 589825, 3, 524294, 589825, 3, 524295, 589825, 3, 524296, 589825, 3, 458752, 524289, 4, 393216, 524289, 4, 327680, 524289, 4, 262144, 524289, 4, 196608, 524289, 4, 131072, 524289, 4, 65536, 524289, 4, 1, 589825, 3, 2, 589825, 3, 3, 589825, 3, 4, 589825, 3, 5, 589825, 3, 6, 589825, 3, 7, 589825, 3, 8, 589825, 3, 65545, 655361, 4, 131081, 655361, 4, 196617, 655361, 4, 262153, 655361, 4, 327689, 655361, 4, 393225, 655361, 4, 458761, 655361, 4)
 layer_2/name = "Cursors"
+layer_2/modulate = Color(1, 1, 1, 0.286275)
 layer_2/tile_data = PackedInt32Array()
+
+[node name="BoardController" type="Node2D" parent="."]
+script = ExtResource("4_t1kwp")
