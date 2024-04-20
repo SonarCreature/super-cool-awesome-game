@@ -1,4 +1,4 @@
-extends Node2D
+class_name Unit extends Node2D
 
 var board : Node2D 
 var board_position : Vector2 = Vector2(0,0)
