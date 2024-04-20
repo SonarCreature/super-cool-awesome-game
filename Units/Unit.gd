@@ -2,7 +2,7 @@ class_name Unit extends Node2D
 
 @onready var controller = get_parent()
 var board_position : Vector2 = Vector2(0,0)
-var movement = 5
+var movement = 3
 var move_cells = []
 var stop = 100
 # Called when the node enters the scene tree for the first time.
@@ -23,18 +23,24 @@ func display_movement():
 	return
 
 func find_valid_movement(cell : Vector2i, cost : int):
-	if (cost > movement)||(cell in move_cells) == true:
+	var north = Vector2i(cell.x, cell.y - 1)
+	var south = Vector2i(cell.x, cell.y + 1)
+	var east = Vector2i(cell.x + 1, cell.y)
+	var west = Vector2i(cell.x - 1, cell.y)
+	if (cell in move_cells)==true:	
+		if (north in move_cells)==true:
+			if (south in move_cells)==true:
+				if (east in move_cells) == true:
+					if (west in move_cells)==true:
+						return
+	if (cost > movement) :
 		return
 	else:
 		move_cells.append(cell)
-		var north = Vector2i(cell.x, cell.y - 1)
-		var south = Vector2i(cell.x, cell.y + 1)
-		var east = Vector2i(cell.x + 1, cell.y)
-		var west = Vector2i(cell.x - 1, cell.y)
 		find_valid_movement(east, cost + get_cost(east))
-		#find_valid_movement(south, cost + get_cost(south))
-		#find_valid_movement(west, cost + get_cost(west))
-		#find_valid_movement(north, cost + get_cost(north))
+		find_valid_movement(south, cost + get_cost(south))
+		find_valid_movement(west, cost + get_cost(west))
+		find_valid_movement(north, cost + get_cost(north))
 
 
 func get_cost(cell : Vector2i):
