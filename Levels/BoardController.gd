@@ -4,6 +4,7 @@ const unit_scene = preload("res://Units/Unit.tscn")
 #idk why i have to access the board this way, but it works
 @onready var board = get_parent()
 var map_position : Vector2i
+var active_unit : Unit
 
 # Called when the node enters the scene tree for the first time.
 func _init():
@@ -16,8 +17,13 @@ func _process(delta):
 	update_cursor(new_position)
 	if Input.is_action_just_pressed("left_click"):
 		if is_occupied(new_position):
-			var unit = board.get_cell_data(new_position).occupant
-			unit.display_movement()
+			active_unit = board.get_cell_data(new_position).occupant
+			active_unit.display_movement()
+		else:
+			if active_unit != null:
+				print(active_unit.get_move_cells())
+				try_move(active_unit, new_position)
+				wipe_highlight()
 		#print(board.get_cell_data(new_position).position)
 	pass
 
@@ -46,4 +52,17 @@ func set_occupant(cell : Vector2i, unit):
 	board.get_cell_data(cell).occupant = unit
 
 func highlight_tile(cell : Vector2i):
-	board.map.set_cell(2, cell, 1, Vector2(1,2))
+	board.map.set_cell(3, cell, 1, Vector2(1,2))
+
+func try_move(unit, cell : Vector2i):
+	
+	if cell in unit.move_cells:
+		set_occupant(unit.board_position, null)
+		set_occupant(cell, unit)	
+		unit.board_position = cell
+		unit.position = board.get_map().map_to_local(cell)
+
+func wipe_highlight():
+	for cell in board.map_data:
+		board.map.set_cell(3, cell, -1, Vector2(1,2))
+	

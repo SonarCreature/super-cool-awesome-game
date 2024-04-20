@@ -3,10 +3,12 @@ extends Node2D
 #import resources
 @export var map : TileMap
 var map_data : Dictionary = {}
+var obstacles = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	var cells = map.get_used_cells(0)
+	obstacles = map.get_used_cells(1)
 	for cell in cells:
 		map_data[cell] = CellData.new()
 		map_data[cell].position = cell

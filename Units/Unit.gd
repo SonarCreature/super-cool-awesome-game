@@ -1,7 +1,7 @@
 class_name Unit extends Node2D
 
 @onready var controller = get_parent()
-var board_position : Vector2 = Vector2(0,0)
+var board_position : Vector2i = Vector2i(0,0)
 var movement = 3
 var move_cells = []
 var stop = 100
@@ -17,10 +17,13 @@ func _process(delta):
 func display_movement():
 	move_cells = []
 	find_valid_movement(board_position, 0)
-	print(move_cells)
+	#print(move_cells)
 	for cell in move_cells:
-		controller.highlight_tile(cell)
-	return
+		if cell == board_position:
+			move_cells.erase(cell)
+		else:
+			controller.highlight_tile(cell)
+	return move_cells
 
 func find_valid_movement(cell : Vector2i, cost : int):
 	var north = Vector2i(cell.x, cell.y - 1)
@@ -33,7 +36,7 @@ func find_valid_movement(cell : Vector2i, cost : int):
 				if (east in move_cells) == true:
 					if (west in move_cells)==true:
 						return
-	if (cost > movement) :
+	if (cost > movement) || cell in controller.board.obstacles:
 		return
 	else:
 		move_cells.append(cell)
@@ -47,4 +50,7 @@ func get_cost(cell : Vector2i):
 	if cell in controller.board.map_data:
 		return controller.board.get_cell_data(cell).move_cost
 	return 9999
+
+func get_move_cells():
+	return move_cells
 
