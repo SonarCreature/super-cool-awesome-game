@@ -4,7 +4,10 @@ class_name Unit extends Node2D
 var board_position : Vector2i = Vector2i(0,0)
 var movement = 3
 var move_cells = []
-var stop = 100
+var team = 'player'
+var hp = 5
+var acted = false
+var abilities = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -21,8 +24,8 @@ func display_movement():
 	for cell in move_cells:
 		if cell == board_position:
 			move_cells.erase(cell)
-		else:
-			controller.highlight_tile(cell)
+	for cell in move_cells:
+		controller.highlight_tile(cell)
 	return move_cells
 
 func find_valid_movement(cell : Vector2i, cost : int):
