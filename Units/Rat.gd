@@ -5,8 +5,8 @@ extends Unit
 func _ready():
 	var rng = RandomNumberGenerator.new()
 	team = 'enemy'
-	hp = rng.randi_range(1, 10)
-	enemy_damage = rng.randi_range(1, 5)
+	hp = rng.randi_range(1, 7)
+	enemy_damage = rng.randi_range(1, 3)
 	var possible_frames = [101, 102, 103, 104, 113, 114, 115,  116, 117, 118, 123, 124, 125, 126, 127, 128, 129, 130]
 	var chosen_frame = rng.randi_range(0, len(possible_frames) - 1)
 	get_child(0).frame = possible_frames[chosen_frame]
