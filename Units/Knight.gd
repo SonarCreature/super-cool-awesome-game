@@ -19,7 +19,7 @@ func _ready():
 	bolster.effect = "armor"
 	bolster.amount = 1
 	bolster.target = "self"
-	bolster.name = "bolster"
+	bolster.name = "Bolster"
 	abilities.append(sword_slash)
 	abilities.append(bolster)
 	pass # Replace with function body.

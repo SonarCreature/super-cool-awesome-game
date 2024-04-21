@@ -2,3 +2,7 @@ res://Levels/UI.tscn
 res://Levels/Board.tscn
 res://Units/Unit.tscn
 res://Units/Knight.tscn
+res://Levels/BoardController.gd
+res://Units/Knight.gd
+res://Levels/AbilityManager.gd
+res://Levels/Board.gd
