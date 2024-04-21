@@ -1,14 +1,12 @@
 [gd_scene load_steps=3 format=3 uid="uid://cvmxmoyqc4shj"]
 
+[ext_resource type="Texture2D" uid="uid://drqn5guqiox54" path="res://Art/Tilemaps/tilemap_packed (2).png" id="1_bhrok"]
 [ext_resource type="Script" path="res://Units/Rat.gd" id="1_fjyti"]
-[ext_resource type="Texture2D" uid="uid://ctn4gv5eyt5ib" path="res://Units/tilemap_packed_2.png" id="2_plyl0"]
 
 [node name="Rat" type="Node2D"]
 script = ExtResource("1_fjyti")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_plyl0")
-hframes = 12
-vframes = 11
-frame = 101
+texture = ExtResource("1_bhrok")
+region_enabled = true
 region_rect = Rect2(48, 160, 16, 16)
