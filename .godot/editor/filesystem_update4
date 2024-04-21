@@ -1,7 +1,6 @@
-res://Board.tscn
-res://Units/Unit.tscn
-res://Levels/Board.tscn
-res://Units/Unit.gd
-res://Levels/Board.gd
-res://cellData.gd
 res://Levels/BoardController.gd
+res://Buildings/Building.tscn
+res://Buildings/Building.gd
+res://Levels/Board.tscn
+res://Units/Unit.tscn
+res://Levels/Board.gd
