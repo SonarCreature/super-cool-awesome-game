@@ -35,9 +35,7 @@ func _process(delta):
 			if new_position in board.map_data:
 				if is_occupied(new_position):
 					if board.get_cell_data(new_position).occupant.team == 'player':
-						active_unit = board.get_cell_data(new_position).occupant
-						unit_selected.emit()
-						active_unit.display_movement()
+						select(new_position)
 				else:
 					if active_unit != null:
 						print(active_unit.get_move_cells())
@@ -94,8 +92,20 @@ func try_move(unit, cell : Vector2i):
 		set_occupant(cell, unit)	
 		unit.board_position = cell
 		unit.position = board.get_map().map_to_local(cell)
+	else:
+		deselect()
 
 func wipe_highlight():
 	for cell in board.map_data:
 		board.map.set_cell(3, cell, -1, Vector2(1,2))
+
+func select(unit : Vector2i):
+	active_unit = board.get_cell_data(unit).occupant
+	unit_selected.emit()
+	active_unit.display_movement()
+
+func deselect():
+	active_unit.move_cells = []
+	active_unit = null
+	wipe_highlight()
 
