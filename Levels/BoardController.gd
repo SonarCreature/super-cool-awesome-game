@@ -158,6 +158,8 @@ func deselect():
 
 func _end_turn():
 	turn_num += 1
+	if playerUnits.size == 0:
+		
 	if enemyUnits.size() != 0:
 		for i in enemyUnits.size():
 			enemyUnits[i].getAIMVMT(enemyUnits[i].getboardpos())
@@ -167,6 +169,8 @@ func _end_turn():
 		i.has_moved = false
 		i.has_acted = false
 		i.armor = 0
+	am.active_ability = null
+	ui.get_child(1).visible = false
 	print(turn_num)
 
 func _on_control_entered():

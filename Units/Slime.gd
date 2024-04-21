@@ -10,7 +10,7 @@ func _ready():
 	sword_slash.description = "A long range acid attack"
 	sword_slash.effect = "damage"
 	sword_slash.amount = 10
-	sword_slash.max_range = 5
+	sword_slash.max_range = 4
 	sword_slash.name = "Acid Throw"
 	sword_slash.target = "enemy"
 	var bolster = Ability.new()

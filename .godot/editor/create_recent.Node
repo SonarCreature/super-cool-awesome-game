@@ -1,10 +1,10 @@
+Control
 CharacterBody2D
 Camera2D
 Button
 Label
 Sprite2D
 Panel
-Control
 Node
 Node2D
 CanvasLayer
