@@ -5,6 +5,7 @@ extends Unit
 func _ready():
 	team = 'enemy'
 	hp = 3
+	
 	pass # Replace with function body.
 
 

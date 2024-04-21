@@ -24,10 +24,11 @@ var active_unit : Unit
 var click_state = 'select'
 var unit_nameplate
 var unit_icon
+var playerUnits = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	unit_nameplate = ui.get_child(0).get_child(1)
-	unit_icon = ui.get_child(0).get_child(0)	
+	#unit_nameplate = ui.get_child(0).get_child(1)
+	#unit_icon = ui.get_child(0).get_child(0)	
 	pass # Replace with function body.
 
 
@@ -61,12 +62,14 @@ func place_unit(position : Vector2i, type : String):
 	if is_occupied(position) == true:
 		print('tile is occupied')
 		return
-	
+		
 	var new_unit = UNIT_TYPES[type].instantiate()
 	new_unit.name = "Unit"
 	add_child(new_unit)
 	new_unit.position = board.get_map().map_to_local(position)
 	new_unit.board_position = position
+	if new_unit.getTeam() == "player":
+		playerUnits.append(new_unit)
 	set_occupant(position, new_unit)
 
 func place_building(position : Vector2i): # add type as param

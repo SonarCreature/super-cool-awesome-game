@@ -11,6 +11,7 @@ var hp = 5
 var acted = false
 var abilities = []
 var selection = 0
+var mvmtSelection = Vector2i(0,0)
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -32,6 +33,8 @@ func display_movement():
 	return move_cells
 
 func find_range(range):
+	find_neareast()
+	
 	var temp = []
 	find_valid_range(board_position, 0, range, temp)
 	
@@ -82,6 +85,7 @@ func find_valid_range(cell : Vector2i, cost : int, range : int, final_array : Ar
 
 
 func get_cost(cell : Vector2i):
+	
 	if cell in controller.board.map_data:
 		return controller.board.get_cell_data(cell).move_cost
 	return 9999
@@ -109,7 +113,38 @@ func augCalc(damage:int):
 	return damage
 func add_armor(amount : int):
 	armor += amount
-
+func find_neareast():
+	print(controller.playerUnits[0].getboardpos())
+	var closee = controller.playerUnits[0].getboardpos()
+	var lowest = 10
+	var lowast = controller.playerUnits[0].getboardpos()
+	var gap = Vector2i(0,0)
+	var gaq = 0
+	for i in controller.playerUnits.size():
+		gap =controller.playerUnits[i].getboardpos() - board_position
+		gaq = gap.x + gap.y 
+		if gaq < lowest:
+			lowast = controller.playerUnits[i].getboardpos()
+			lowest = gaq
+	return lowast
+func getAIMVMT(position : Vector2i):
+	find_valid_movement(position,0)
+	var nearby = find_neareast()
+	var nearbyiest = board_position
+	var gap = 0
+	var gaq = 0
+	var shortest = 10
+	for cell in move_cells:
+		gap = nearby - cell
+		gaq = gap.x + gap.y
+		if (gaq<shortest):
+			nearbyiest = cell
+	mvmtSelection = nearbyiest
 	
+func getTeam():
+	return team
+func getboardpos():
+	return board_position
+
 
 
