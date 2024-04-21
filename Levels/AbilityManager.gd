@@ -5,14 +5,19 @@ extends Node2D
 var ability_buttons = []
 var valid_targets = []
 var active_ability
+var ability_panel
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	ability_panel = ui.get_child(1)
 	ability_buttons = ui.get_child(1).get_children()
 	ability_buttons[0].pressed.connect(self._load_ability1)
 	ability_buttons[1].pressed.connect(self._load_ability2)
+	ability_panel.visible = false
+	
 	pass # Replace with function body.
 
 func update_ui(unit):
+	ability_panel.visible = true
 	ability_buttons[0].text = unit.abilities[0].name
 	ability_buttons[1].text = unit.abilities[1].name
 # Called every frame. 'delta' is the elapsed time since the previous frame.

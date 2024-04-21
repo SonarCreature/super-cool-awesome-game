@@ -14,6 +14,7 @@ func _ready():
 		map_data[cell].position = cell
 	get_child(2).place_unit(Vector2i(5,5), "Knight")
 	get_child(2).place_unit(Vector2i(5,6), "Rat")	
+	
 	#get_child(1).place_unit(Vector2i(5,7), "Building")
 	pass # Replace with function body.
 

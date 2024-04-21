@@ -305,8 +305,9 @@ script = ExtResource("4_eylhf")
 controller = NodePath("../BoardController")
 ui = NodePath("../CanvasLayer/Control")
 
-[node name="BoardController" type="Node2D" parent="."]
+[node name="BoardController" type="Node2D" parent="." node_paths=PackedStringArray("ui")]
 script = ExtResource("4_t1kwp")
+ui = NodePath("../CanvasLayer/Control")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -314,3 +315,5 @@ script = ExtResource("4_t1kwp")
 
 [connection signal="activate_ability" from="BoardController" to="AbilityManager" method="_on_board_controller_activate_ability"]
 [connection signal="unit_selected" from="BoardController" to="AbilityManager" method="_on_board_controller_unit_selected"]
+[connection signal="entered" from="CanvasLayer/Control" to="BoardController" method="_on_control_entered"]
+[connection signal="exited" from="CanvasLayer/Control" to="BoardController" method="_on_control_exited"]

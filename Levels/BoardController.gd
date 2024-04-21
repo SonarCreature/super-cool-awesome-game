@@ -25,10 +25,15 @@ var click_state = 'select'
 var unit_nameplate
 var unit_icon
 var playerUnits = []
+var enemyUnits = []
+var turn_num = 0
+var over_ui = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#unit_nameplate = ui.get_child(0).get_child(1)
-	#unit_icon = ui.get_child(0).get_child(0)	
+	unit_nameplate = ui.get_child(0).get_child(1)
+	unit_icon = ui.get_child(0).get_child(0)	
+	print(ui.get_child(2))
+	ui.get_child(2).pressed.connect(self._end_turn)
 	pass # Replace with function body.
 
 
@@ -37,6 +42,8 @@ func _process(delta):
 	var new_position = board.get_map().local_to_map(get_global_mouse_position())
 	update_cursor(new_position)
 	if Input.is_action_just_pressed("left_click"):
+		if over_ui == true:
+			return
 		if click_state == 'select':
 			if new_position in board.map_data:
 				if is_occupied(new_position):
@@ -70,6 +77,8 @@ func place_unit(position : Vector2i, type : String):
 	new_unit.board_position = position
 	if new_unit.getTeam() == "player":
 		playerUnits.append(new_unit)
+	else:
+		enemyUnits.append(new_unit)
 	set_occupant(position, new_unit)
 
 func place_building(position : Vector2i): # add type as param
@@ -115,5 +124,19 @@ func select(unit : Vector2i):
 func deselect():
 	active_unit.move_cells = []
 	active_unit = null
+	ui.get_child(1).visible = false
 	wipe_highlight()
 
+func _end_turn():
+	turn_num += 1
+	print(turn_num)
+
+func _on_control_entered():
+	print('entered')
+	over_ui = true
+	pass # Replace with function body.
+
+func _on_control_exited():
+	print('exited')	
+	over_ui = false
+	pass # Replace with function body.

@@ -10,3 +10,5 @@ res://Units/Rat.tscn
 res://Units/Rat.gd
 res://Units/Unit.gd
 res://Buildings/Building.gd
+res://Levels/check_ui.gd
+res://Levels/UI.gd
