@@ -5,7 +5,7 @@ extends Unit
 func _ready():
 	hp = 2
 	movement = 6
-	
+	unit_class = "Ghost"
 	#define abilities
 	var sword_slash = Ability.new()
 	sword_slash.description = "A mid-range attack that does good damage"

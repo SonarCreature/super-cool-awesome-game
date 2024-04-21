@@ -5,7 +5,7 @@ extends Unit
 func _ready():
 	hp = 4
 	movement = 1
-	
+	unit_class = 'slime'
 	var sword_slash = Ability.new()
 	sword_slash.description = "A long range acid attack"
 	sword_slash.effect = "damage"
