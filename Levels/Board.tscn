@@ -482,6 +482,21 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "The Rats Have Eaten You"
 
+[node name="Button" type="Button" parent="CanvasLayer/Control3/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -41.0
+offset_top = 53.0
+offset_right = 47.0
+offset_bottom = 84.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Try Again?"
+
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("7_cc4g3")
 camspeed = 300
@@ -495,3 +510,4 @@ camspeed = 300
 [connection signal="pressed" from="CanvasLayer/Control2/Select Building/Panel/Select Barrel" to="BoardController" method="_on_select_barrel_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control2/Select Building/Panel/Select Anvil" to="BoardController" method="_on_select_anvil_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control2/Select Building/Panel/Select Tombstone" to="BoardController" method="_on_select_tombstone_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control3/Panel/Button" to="BoardController" method="_on_button_pressed"]
