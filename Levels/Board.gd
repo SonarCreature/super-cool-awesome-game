@@ -12,7 +12,8 @@ func _ready():
 	for cell in cells:
 		map_data[cell] = CellData.new()
 		map_data[cell].position = cell
-	get_child(1).place_unit(Vector2i(5,5))
+	get_child(1).place_unit(Vector2i(5,5), "Knight")
+	#get_child(1).place_unit(Vector2i(5,7), "Building")
 	pass # Replace with function body.
 
 func get_cell_data(cell : Vector2i):
