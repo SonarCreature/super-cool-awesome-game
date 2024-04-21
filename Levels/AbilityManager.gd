@@ -24,8 +24,11 @@ func _load_ability2():
 	load_ability(controller.active_unit.abilities[1], controller.active_unit.board_position)
 	
 func load_ability(ability : Ability, unit):
+	controller.click_state = 'activate'
 	controller.wipe_highlight()
-	get_valid_targets(ability.max_range, ability.target, unit)
+	var targets = get_valid_targets(ability.max_range, ability.target, unit)
+	for target in targets:
+		controller.highlight_tile(target)
 	pass
 
 func _on_board_controller_unit_selected():
@@ -39,5 +42,7 @@ func get_valid_targets(range : int, target_type : String, unit : Vector2i):
 		return valid_targets
 	var to_search = controller.active_unit.find_range(range)
 	for cell in to_search:
-		controller.highlight_tile(cell)
-	return
+		if controller.board.get_cell_data(cell).occupant != null:
+			if controller.board.get_cell_data(cell).occupant.team == target_type:
+				valid_targets.append(cell)
+	return valid_targets

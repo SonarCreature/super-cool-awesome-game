@@ -7,7 +7,9 @@ const BUILDING_SCENE = preload("res://Buildings/Building.tscn")
 #idk why i have to access the board this way, but it works
 
 const UNIT_TYPES : Dictionary = {
-	"Knight" : preload("res://Units/Knight.tscn"), "Building" : preload("res://Buildings/Building.tscn")
+	"Knight" : preload("res://Units/Knight.tscn"),
+	"Rat" : preload("res://Units/Rat.tscn"),
+	"Building" : preload("res://Buildings/Building.tscn")
 	
 }
 
@@ -17,7 +19,7 @@ const UNIT_TYPES : Dictionary = {
 @onready var board = get_parent()
 var map_position : Vector2i
 var active_unit : Unit
-
+var click_state = 'select'
 # Called when the node enters the scene tree for the first time.
 func _ready():	
 	pass # Replace with function body.
@@ -28,17 +30,20 @@ func _process(delta):
 	var new_position = board.get_map().local_to_map(get_global_mouse_position())
 	update_cursor(new_position)
 	if Input.is_action_just_pressed("left_click"):
-		if new_position in board.map_data:
-			if is_occupied(new_position):
-				if board.get_cell_data(new_position).occupant.team == 'player':
-					active_unit = board.get_cell_data(new_position).occupant
-					unit_selected.emit()
-					active_unit.display_movement()
-			else:
-				if active_unit != null:
-					print(active_unit.get_move_cells())
-					try_move(active_unit, new_position)
-					wipe_highlight()
+		if click_state == 'select':
+			if new_position in board.map_data:
+				if is_occupied(new_position):
+					if board.get_cell_data(new_position).occupant.team == 'player':
+						active_unit = board.get_cell_data(new_position).occupant
+						unit_selected.emit()
+						active_unit.display_movement()
+				else:
+					if active_unit != null:
+						print(active_unit.get_move_cells())
+						try_move(active_unit, new_position)
+						wipe_highlight()
+		if click_state == 'activate':
+			print('wow')
 		#print(board.get_cell_data(new_position).position)
 	pass
 
