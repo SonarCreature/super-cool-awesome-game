@@ -244,7 +244,12 @@ theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
 text = "𝖂𝖊𝖑𝖈𝖔𝖒𝖊 𝖙𝖔 𝖗𝖆𝖙 𝖘𝖑𝖆𝖞𝖊𝖗, 𝖍𝖊𝖗𝖊 𝖞𝖔𝖚 𝖜𝖎𝖑𝖑 𝖘𝖊𝖙 𝖔𝖋𝖋 𝖔𝖓 𝖞𝖔𝖚𝖗 𝖏𝖔𝖚𝖗𝖓𝖊𝖞 𝖙𝖔 𝖘𝖑𝖆𝖞 𝖗𝖆𝖙𝖘!
 
-𝖀𝖕𝖔𝖓 𝖊𝖆𝖈𝖍 𝖜𝖆𝖛𝖊 𝖈𝖑𝖊𝖆𝖗 𝖞𝖔𝖚 𝖜𝖎𝖑𝖑 𝖇𝖊 𝖆𝖇𝖑𝖊 𝖙𝖔 𝖈𝖔𝖓𝖘𝖙𝖗𝖚𝖈𝖙 𝖔𝖓𝖊 𝖇𝖚𝖎𝖑𝖎𝖓𝖌 𝖙𝖍𝖆𝖙 𝖜𝖎𝖙𝖍 𝖆𝖎𝖉 𝖞𝖔𝖚 𝖔𝖓 𝖞𝖔𝖚𝖗 𝖖𝖚𝖊𝖘𝖙 𝖙𝖔 𝖘𝖑𝖆𝖞 𝖗𝖆𝖙𝖘.
+𝖂𝖊𝖑𝖈𝖔𝖒𝖊 𝖙𝖔 𝖗𝖆𝖙 𝖘𝖑𝖆𝖞𝖊𝖗, 𝖍𝖊𝖗𝖊 𝖞𝖔𝖚 𝖜𝖎𝖑𝖑 𝖘𝖊𝖙 𝖔𝖋𝖋 𝖔𝖓 𝖞𝖔𝖚𝖗 𝖏𝖔𝖚𝖗𝖓𝖊𝖞 𝖙𝖔 𝖘𝖑𝖆𝖞 𝖗𝖆𝖙𝖘!
+
+How to play: Clicking on your character brings up all tiles that can be moved to. Selecting a tile moves the character to that location. Each character has two skills. When clicked, these highlight valid targets the skill can be used on.
+
+Each turn can consist of one movement and then one skill per player character before ending your turn. Additional units can be summoned and controlled by you.
+
 "
 
 [node name="Exit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
