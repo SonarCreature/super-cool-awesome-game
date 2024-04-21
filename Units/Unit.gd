@@ -95,6 +95,8 @@ func get_action():
 	return abilities[selection].ammount
 func take_damage(damage: int ):
 	hp = hp - augCalc(damage)
+	if hp <= 0:
+		get_node(".").queue_free()
 func heal(damage: int):
 	hp = hp + damage
 func armorCalc(damage:int):
@@ -105,6 +107,8 @@ func augCalc(damage:int):
 	damage = damage-armor
 	damage = damage+augment
 	return damage
+func add_armor(amount : int):
+	armor += amount
 
 	
 

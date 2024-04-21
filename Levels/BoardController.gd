@@ -1,6 +1,7 @@
 extends Node2D
 
 signal unit_selected
+signal activate_ability(target)
 
 const UNIT_SCENE = preload("res://Units/Unit.tscn")
 const BUILDING_SCENE = preload("res://Buildings/Building.tscn")
@@ -43,7 +44,7 @@ func _process(delta):
 						try_move(active_unit, new_position)
 						wipe_highlight()
 		if click_state == 'activate':
-			print('wow')
+			activate_ability.emit(new_position)
 		#print(board.get_cell_data(new_position).position)
 	pass
 

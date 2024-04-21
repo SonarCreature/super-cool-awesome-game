@@ -3,6 +3,8 @@ extends Node2D
 @export var controller : Node2D
 @export var ui : Control
 var ability_buttons = []
+var valid_targets = []
+var active_ability
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	ability_buttons = ui.get_child(1).get_children()
@@ -26,9 +28,10 @@ func _load_ability2():
 func load_ability(ability : Ability, unit):
 	controller.click_state = 'activate'
 	controller.wipe_highlight()
-	var targets = get_valid_targets(ability.max_range, ability.target, unit)
-	for target in targets:
+	valid_targets = get_valid_targets(ability.max_range, ability.target, unit)
+	for target in valid_targets:
 		controller.highlight_tile(target)
+	active_ability = ability
 	pass
 
 func _on_board_controller_unit_selected():
@@ -46,3 +49,15 @@ func get_valid_targets(range : int, target_type : String, unit : Vector2i):
 			if controller.board.get_cell_data(cell).occupant.team == target_type:
 				valid_targets.append(cell)
 	return valid_targets
+
+
+func _on_board_controller_activate_ability(target):
+	activate_ability(target, active_ability.effect, active_ability.amount)
+	pass # Replace with function body.
+
+func activate_ability(target_cell : Vector2i, effect : String, value : int):
+	var target = controller.board.get_cell_data(target_cell).occupant
+	if effect == 'damage':
+		target.take_damage(value)
+	if effect == "armor":
+		target.add_armor(value)
