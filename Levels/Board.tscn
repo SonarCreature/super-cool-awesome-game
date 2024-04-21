@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cqsacwsrw30ag"]
+[gd_scene load_steps=9 format=3 uid="uid://cqsacwsrw30ag"]
 
 [ext_resource type="Texture2D" uid="uid://bikbavq7tq33f" path="res://Art/Tilemaps/tilemap_packed.png" id="1_h0dxr"]
 [ext_resource type="Script" path="res://Levels/Board.gd" id="1_iwyvv"]
 [ext_resource type="Texture2D" uid="uid://drqn5guqiox54" path="res://Art/Tilemaps/tilemap_packed (2).png" id="2_g27bf"]
 [ext_resource type="Script" path="res://Levels/BoardController.gd" id="4_t1kwp"]
+[ext_resource type="PackedScene" uid="uid://euroaaih6m32" path="res://Levels/UI.tscn" id="5_01x7y"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8gway"]
 texture = ExtResource("2_g27bf")
@@ -300,3 +301,7 @@ layer_3/tile_data = PackedInt32Array()
 
 [node name="BoardController" type="Node2D" parent="."]
 script = ExtResource("4_t1kwp")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" parent="CanvasLayer" instance=ExtResource("5_01x7y")]
