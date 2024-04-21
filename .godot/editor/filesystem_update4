@@ -22,3 +22,4 @@ res://Units/Slime.tscn
 res://Units/Slime.gd
 res://Units/Skeleton.tscn
 res://Units/Skeleton.gd
+res://Levels/CameraControl.gd

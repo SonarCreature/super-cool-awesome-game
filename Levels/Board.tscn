@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cqsacwsrw30ag"]
+[gd_scene load_steps=11 format=3 uid="uid://cqsacwsrw30ag"]
 
 [ext_resource type="Texture2D" uid="uid://bikbavq7tq33f" path="res://Art/Tilemaps/tilemap_packed.png" id="1_h0dxr"]
 [ext_resource type="Script" path="res://Levels/Board.gd" id="1_iwyvv"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://Levels/AbilityManager.gd" id="4_eylhf"]
 [ext_resource type="Script" path="res://Levels/BoardController.gd" id="4_t1kwp"]
 [ext_resource type="PackedScene" uid="uid://euroaaih6m32" path="res://Levels/UI.tscn" id="5_01x7y"]
+[ext_resource type="Script" path="res://Levels/CameraControl.gd" id="7_cc4g3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_8gway"]
 texture = ExtResource("2_g27bf")
@@ -448,6 +449,12 @@ offset_top = 243.5
 offset_right = 222.0
 offset_bottom = 274.5
 text = "Select Tombstone"
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+script = ExtResource("7_cc4g3")
+camspeed = 300
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 
 [connection signal="activate_ability" from="BoardController" to="AbilityManager" method="_on_board_controller_activate_ability"]
 [connection signal="unit_selected" from="BoardController" to="AbilityManager" method="_on_board_controller_unit_selected"]
