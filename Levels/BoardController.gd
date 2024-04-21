@@ -8,6 +8,7 @@ const BUILDING_SCENE = preload("res://Buildings/Building.tscn")
 
 const UNIT_TYPES : Dictionary = {
 	"Knight" : preload("res://Units/Knight.tscn"), "Building" : preload("res://Buildings/Building.tscn")
+	
 }
 
 #const BUILDING_TYPES : Dictionary = {

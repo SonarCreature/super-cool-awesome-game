@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://cwbw65kdqp8lm"]
+[gd_scene load_steps=3 format=3 uid="uid://bx7a67l4ajqx4"]
 
 [ext_resource type="Script" path="res://Units/Knight.gd" id="1_p34ga"]
 [ext_resource type="Texture2D" uid="uid://drqn5guqiox54" path="res://Art/Tilemaps/tilemap_packed (2).png" id="2_832sb"]
