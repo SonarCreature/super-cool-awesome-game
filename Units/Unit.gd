@@ -149,10 +149,23 @@ func getAIMVMT(position : Vector2i):
 	mvmtSelection = nearbyiest
 	print("nearby: ",nearbyiest)
 	controller.force_move(controller.board.get_cell_data(board_position).occupant, nearbyiest)
+	
 func getTeam():
 	return team
 func getboardpos():
 	return board_position
+	
+func inRange():
+	var north = Vector2(board_position.x, board_position.y - 1)
+	var south = Vector2(board_position.x, board_position.y + 1)
+	var east = Vector2(board_position.x + 1, board_position.y)
+	var west = Vector2(board_position.x - 1, board_position.y)
+	var to_check = [north, south, east, west]
+	for cell in to_check:
+		if controller.board.get_cell_data(cell).occupant != null:
+			if controller.board.get_cell_data(cell).occupant.team != 'enemy':
+				return controller.board.get_cell_data(cell).occupant
+	
 
 
 
