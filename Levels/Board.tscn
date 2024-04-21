@@ -312,4 +312,5 @@ script = ExtResource("4_t1kwp")
 
 [node name="Control" parent="CanvasLayer" instance=ExtResource("5_01x7y")]
 
+[connection signal="activate_ability" from="BoardController" to="AbilityManager" method="_on_board_controller_activate_ability"]
 [connection signal="unit_selected" from="BoardController" to="AbilityManager" method="_on_board_controller_unit_selected"]
