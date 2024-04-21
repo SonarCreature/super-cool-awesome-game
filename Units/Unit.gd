@@ -2,6 +2,7 @@ class_name Unit extends Node2D
 
 @onready var controller = get_parent()
 var board_position : Vector2i = Vector2i(0,0)
+var turnTaken = false
 var movement = 3
 var augment = 0
 var armor = 0
@@ -54,7 +55,7 @@ func find_valid_movement(cell : Vector2i, cost : int):
 				if (east in move_cells) == true:
 					if (west in move_cells)==true:
 						return
-	if (cost > movement) || cell in controller.board.obstacles:
+	if (cost > movement) || cell in controller.board.obstacles || (controller.board.get_cell_data(cell).occupant != null && cell != board_position):
 		return
 	else:
 		move_cells.append(cell)
@@ -130,17 +131,24 @@ func find_neareast():
 func getAIMVMT(position : Vector2i):
 	find_valid_movement(position,0)
 	var nearby = find_neareast()
+	print("nearby: ",nearby)
 	var nearbyiest = board_position
-	var gap = 0
+	var gap = Vector2i(0,0)
 	var gaq = 0
-	var shortest = 10
+	var shortest = 10000
 	for cell in move_cells:
+		print("cell: ",cell)
 		gap = nearby - cell
-		gaq = gap.x + gap.y
-		if (gaq<shortest):
+		gaq = abs(gap.x) + abs(gap.y)
+		print("gaq: ",gaq)
+		print("gap: ",gap)
+		print ("shortest: ", shortest)
+		if (abs(gaq)<shortest):
 			nearbyiest = cell
+			shortest = abs(gaq)
 	mvmtSelection = nearbyiest
-	
+	print("nearby: ",nearbyiest)
+	controller.force_move(controller.board.get_cell_data(board_position).occupant, nearbyiest)
 func getTeam():
 	return team
 func getboardpos():

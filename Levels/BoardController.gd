@@ -28,6 +28,7 @@ var playerUnits = []
 var enemyUnits = []
 var turn_num = 0
 var over_ui = false
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	unit_nameplate = ui.get_child(0).get_child(1)
@@ -41,6 +42,7 @@ func _ready():
 func _process(delta):
 	var new_position = board.get_map().local_to_map(get_global_mouse_position())
 	update_cursor(new_position)
+	
 	if Input.is_action_just_pressed("left_click"):
 		if over_ui == true:
 			return
@@ -112,6 +114,12 @@ func try_move(unit, cell : Vector2i):
 	else:
 		deselect()
 
+func force_move(unit, cell : Vector2i):
+		set_occupant(unit.board_position, null)
+		set_occupant(cell, unit)	
+		unit.board_position = cell
+		unit.position = board.get_map().map_to_local(cell)
+
 func wipe_highlight():
 	for cell in board.map_data:
 		board.map.set_cell(3, cell, -1, Vector2(1,2))
@@ -129,6 +137,8 @@ func deselect():
 
 func _end_turn():
 	turn_num += 1
+	for i in enemyUnits.size():
+		enemyUnits[i].getAIMVMT(enemyUnits[i].getboardpos())
 	print(turn_num)
 
 func _on_control_entered():
