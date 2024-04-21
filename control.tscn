@@ -179,13 +179,63 @@ text = "Play"
 layout_mode = 2
 text = "Options"
 
+[node name="Title" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/Options"]
+layout_mode = 0
+offset_left = 136.0
+offset_top = -116.0
+offset_right = 433.0
+offset_bottom = -45.0
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0.913725, 0, 0, 1)
+theme_override_colors/selection_color = Color(0.941176, 0, 0, 1)
+theme_override_colors/font_shadow_color = Color(1, 1, 1, 1)
+theme_override_colors/font_outline_color = Color(0.92549, 0, 0, 1)
+theme_override_colors/table_border = Color(0.968627, 0, 0, 1)
+theme_override_font_sizes/normal_font_size = 50
+text = "𝙍𝙖𝙩 𝙎𝙡𝙖𝙮𝙚𝙧
+"
+
+[node name="ColorRect2" type="ColorRect" parent="MarginContainer/HBoxContainer/VBoxContainer/Options"]
+layout_mode = 0
+offset_left = 116.0
+offset_top = -48.0
+offset_right = 409.0
+offset_bottom = 146.0
+color = Color(0, 0, 0, 1)
+
+[node name="ColorRect3" type="ColorRect" parent="MarginContainer/HBoxContainer/VBoxContainer/Options"]
+layout_mode = 0
+offset_left = 112.0
+offset_top = -45.0
+offset_right = 405.0
+offset_bottom = 149.0
+color = Color(0.945098, 0.192157, 0.192157, 1)
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/HBoxContainer/VBoxContainer/Options"]
+layout_mode = 0
+offset_left = 116.0
+offset_top = -45.0
+offset_right = 405.0
+offset_bottom = 146.0
+color = Color(0.190762, 0.190762, 0.190762, 1)
+
+[node name="Tuto" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/Options"]
+layout_mode = 0
+offset_left = 127.0
+offset_top = -43.0
+offset_right = 389.0
+offset_bottom = 148.0
+text = "Welcome to rat slayer, here you will set off on your journey to slay rats!
+
+Upon each wave clear you will be able to construct one builing that with aid you on your quest to slay rats."
+
 [node name="Exit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Exit"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(246, 163)
-scale = Vector2(0.105208, 0.0911458)
+position = Vector2(71, 75)
+scale = Vector2(0.033854, 0.0309896)
 texture = ExtResource("3_irmji")
 
 [connection signal="pressed" from="MarginContainer/HBoxContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
