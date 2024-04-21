@@ -1,9 +1,12 @@
+res://Levels/UI.tscn
 res://Levels/Board.tscn
 res://Units/Unit.tscn
 res://Units/Knight.tscn
-res://Levels/UI.tscn
-res://Units/Rat.tscn
-res://Levels/Board.gd
 res://Levels/BoardController.gd
+res://Units/Knight.gd
+res://Levels/AbilityManager.gd
+res://Levels/Board.gd
+res://Units/Rat.tscn
 res://Units/Rat.gd
 res://Units/Unit.gd
+res://Buildings/Building.gd
