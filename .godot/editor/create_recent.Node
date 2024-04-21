@@ -1,6 +1,9 @@
-Node
 Button
+Label
 Sprite2D
+Panel
+Control
+Node
 Node2D
 CanvasLayer
 TileMap

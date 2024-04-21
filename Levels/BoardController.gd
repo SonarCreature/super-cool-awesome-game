@@ -10,7 +10,12 @@ const BUILDING_SCENE = preload("res://Buildings/Building.tscn")
 const UNIT_TYPES : Dictionary = {
 	"Knight" : preload("res://Units/Knight.tscn"),
 	"Rat" : preload("res://Units/Rat.tscn"),
-	"Building" : preload("res://Buildings/Building.tscn")
+	"Building" : preload("res://Buildings/Building.tscn"),
+	"Barrel" : preload("res://Units/Barrel.tscn"),
+	"Anvil" : preload("res://Units/Anvil.tscn"),
+	"Tombstone" : preload("res://Units/Tombstone.tscn"),
+	"Slime" : preload("res://Units/Slime.tscn"),
+	"Skeleton" : preload('res://Units/Skeleton.tscn')
 	
 }
 
@@ -19,6 +24,8 @@ const UNIT_TYPES : Dictionary = {
 #}
 @onready var board = get_parent()
 @export var ui : Control
+@export var building_select : Control
+@export var am : Node2D
 var map_position : Vector2i
 var active_unit : Unit
 var click_state = 'select'
@@ -27,14 +34,17 @@ var unit_icon
 var playerUnits = []
 var enemyUnits = []
 var turn_num = 0
+var unit_num = 0
 var over_ui = false
+var place_type
+var wave_num = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	unit_nameplate = ui.get_child(0).get_child(1)
 	unit_icon = ui.get_child(0).get_child(0)	
-	print(ui.get_child(2))
 	ui.get_child(2).pressed.connect(self._end_turn)
+	building_select.visible = false
 	pass # Replace with function body.
 
 
@@ -58,6 +68,12 @@ func _process(delta):
 						wipe_highlight()
 		if click_state == 'activate':
 			activate_ability.emit(new_position)
+		if click_state == 'place':
+			if is_occupied(new_position) == true:
+				return
+			place_unit(new_position, place_type)
+			click_state = 'select'
+			spawn_wave()
 		#print(board.get_cell_data(new_position).position)
 	pass
 
@@ -73,7 +89,8 @@ func place_unit(position : Vector2i, type : String):
 		return
 		
 	var new_unit = UNIT_TYPES[type].instantiate()
-	new_unit.name = "Unit"
+	new_unit.name = "Unit" + str(unit_num)
+	unit_num += 1
 	add_child(new_unit)
 	new_unit.position = board.get_map().map_to_local(position)
 	new_unit.board_position = position
@@ -111,10 +128,13 @@ func try_move(unit, cell : Vector2i):
 		set_occupant(cell, unit)	
 		unit.board_position = cell
 		unit.position = board.get_map().map_to_local(cell)
+		unit.has_moved = true
 	else:
 		deselect()
 
 func force_move(unit, cell : Vector2i):
+		if board.get_cell_data(cell).occupant != null:
+			return
 		set_occupant(unit.board_position, null)
 		set_occupant(cell, unit)	
 		unit.board_position = cell
@@ -127,7 +147,8 @@ func wipe_highlight():
 func select(unit : Vector2i):
 	active_unit = board.get_cell_data(unit).occupant
 	unit_selected.emit()
-	active_unit.display_movement()
+	if active_unit.has_moved == false:
+		active_unit.display_movement()
 
 func deselect():
 	active_unit.move_cells = []
@@ -137,8 +158,15 @@ func deselect():
 
 func _end_turn():
 	turn_num += 1
-	for i in enemyUnits.size():
-		enemyUnits[i].getAIMVMT(enemyUnits[i].getboardpos())
+	if enemyUnits.size() != 0:
+		for i in enemyUnits.size():
+			enemyUnits[i].getAIMVMT(enemyUnits[i].getboardpos())
+	else:
+		new_wave()
+	for i in playerUnits:
+		i.has_moved = false
+		i.has_acted = false
+		i.armor = 0
 	print(turn_num)
 
 func _on_control_entered():
@@ -150,3 +178,49 @@ func _on_control_exited():
 	print('exited')	
 	over_ui = false
 	pass # Replace with function body.
+
+func new_wave():
+	wave_num += 1
+	building_select.visible = true
+
+func spawn_wave():
+	var rng = RandomNumberGenerator.new()
+	var to_spawn = wave_num + 2
+	while to_spawn != 0:
+		var tile = board.map.get_used_cells(0)[rng.randi_range(0, board.map.get_used_cells(0).size()-10)]
+		if tile not in board.obstacles && board.get_cell_data(tile).occupant == null:
+			place_unit(tile, "Rat")
+			to_spawn -= 1
+	for unit in playerUnits:
+		if unit.unit_class == "Barrel":
+			try_place("Slime", unit.board_position)
+		if unit.unit_class == "Tombstone":
+			try_place("Skeleton", unit.board_position)
+
+func try_place(type : String, cell : Vector2i):
+	var north = Vector2i(cell.x, cell.y - 1)
+	var south = Vector2i(cell.x, cell.y + 1)
+	var east = Vector2i(cell.x + 1, cell.y)
+	var west = Vector2i(cell.x - 1, cell.y)
+	var to_try = [north, south, east, west]
+	for tile in to_try:
+		if board.get_cell_data(tile).occupant == null && tile not in board.obstacles:
+			place_unit(tile, type)
+			return
+
+func _on_select_barrel_pressed():
+	begin_placement('Barrel')
+	pass # Replace with function body.
+
+func _on_select_anvil_pressed():
+	begin_placement('Anvil')	
+	pass # Replace with function body.
+
+func _on_select_tombstone_pressed():
+	begin_placement('Tombstone')	
+	pass # Replace with function body.
+
+func begin_placement(type : String):
+	building_select.visible = false
+	click_state = 'place'
+	place_type = type

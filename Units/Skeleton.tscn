@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://cybvdbf25nghr"]
+
+[ext_resource type="Script" path="res://Units/Skeleton.gd" id="1_0k1cv"]
+[ext_resource type="Texture2D" uid="uid://drqn5guqiox54" path="res://Art/Tilemaps/tilemap_packed (2).png" id="2_ip5oh"]
+
+[node name="Skeleton" type="Node2D"]
+script = ExtResource("1_0k1cv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_ip5oh")
+region_enabled = true
+region_rect = Rect2(16, 160, 16, 16)

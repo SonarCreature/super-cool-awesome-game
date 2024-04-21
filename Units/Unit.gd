@@ -2,17 +2,21 @@ class_name Unit extends Node2D
 
 @onready var controller = get_parent()
 var board_position : Vector2i = Vector2i(0,0)
+var unit_class = null
 var turnTaken = false
 var movement = 3
 var augment = 0
 var armor = 0
+var enemy_damage = 0
 var move_cells = []
 var team = 'player'
-var hp = 5
+@export var hp = 5
 var acted = false
 var abilities = []
 var selection = 0
 var mvmtSelection = Vector2i(0,0)
+var has_moved : bool = false
+var has_acted : bool = false
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -101,6 +105,11 @@ func get_action():
 func take_damage(damage: int ):
 	hp = hp - augCalc(damage)
 	if hp <= 0:
+		if team == 'enemy':
+			controller.enemyUnits.erase(controller.board.get_cell_data(board_position).occupant)
+		if team == 'player':
+			controller.playerUnits.erase(controller.board.get_cell_data(board_position).occupant)
+		controller.board.get_cell_data(board_position).occupant = null
 		get_node(".").queue_free()
 func heal(damage: int):
 	hp = hp + damage
@@ -129,6 +138,7 @@ func find_neareast():
 			lowest = gaq
 	return lowast
 func getAIMVMT(position : Vector2i):
+	controller.active_unit = controller.board.get_cell_data(board_position).occupant
 	find_valid_movement(position,0)
 	var nearby = find_neareast()
 	print("nearby: ",nearby)
@@ -149,6 +159,10 @@ func getAIMVMT(position : Vector2i):
 	mvmtSelection = nearbyiest
 	print("nearby: ",nearbyiest)
 	controller.force_move(controller.board.get_cell_data(board_position).occupant, nearbyiest)
+	if inRange() != null:
+		var target = inRange()
+		controller.board.get_cell_data(target).occupant.take_damage(enemy_damage)
+		
 	
 func getTeam():
 	return team
@@ -164,7 +178,8 @@ func inRange():
 	for cell in to_check:
 		if controller.board.get_cell_data(cell).occupant != null:
 			if controller.board.get_cell_data(cell).occupant.team != 'enemy':
-				return controller.board.get_cell_data(cell).occupant
+				return controller.board.get_cell_data(cell).occupant.board_position
+	return null
 	
 
 

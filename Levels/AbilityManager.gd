@@ -31,6 +31,8 @@ func _load_ability2():
 	load_ability(controller.active_unit.abilities[1], controller.active_unit.board_position)
 	
 func load_ability(ability : Ability, unit):
+	if controller.active_unit.has_acted == true:
+		return
 	controller.click_state = 'activate'
 	controller.wipe_highlight()
 	valid_targets = get_valid_targets(ability.max_range, ability.target, unit)
@@ -63,8 +65,13 @@ func _on_board_controller_activate_ability(target):
 	pass # Replace with function body.
 
 func activate_ability(target_cell : Vector2i, effect : String, value : int):
+	if controller.board.get_cell_data(target_cell).occupant == null:
+		return
 	var target = controller.board.get_cell_data(target_cell).occupant
 	if effect == 'damage':
 		target.take_damage(value)
 	if effect == "armor":
 		target.add_armor(value)
+	if effect == "health":
+		target.heal(value)
+	controller.active_unit.has_acted = true
