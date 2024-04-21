@@ -53,6 +53,8 @@ func get_valid_targets(range : int, target_type : String, unit : Vector2i):
 
 func _on_board_controller_activate_ability(target):
 	activate_ability(target, active_ability.effect, active_ability.amount)
+	controller.wipe_highlight()
+	controller.click_state = 'select'
 	pass # Replace with function body.
 
 func activate_ability(target_cell : Vector2i, effect : String, value : int):
