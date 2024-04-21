@@ -18,11 +18,16 @@ const UNIT_TYPES : Dictionary = {
 	#"placehlder!!" : preload("res://Building/buildingtypewahooo.tscn")
 #}
 @onready var board = get_parent()
+@export var ui : Control
 var map_position : Vector2i
 var active_unit : Unit
 var click_state = 'select'
+var unit_nameplate
+var unit_icon
 # Called when the node enters the scene tree for the first time.
-func _ready():	
+func _ready():
+	unit_nameplate = ui.get_child(0).get_child(1)
+	unit_icon = ui.get_child(0).get_child(0)	
 	pass # Replace with function body.
 
 
