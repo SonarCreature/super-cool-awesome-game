@@ -26,11 +26,12 @@ const UNIT_TYPES : Dictionary = {
 @export var ui : Control
 @export var building_select : Control
 @export var am : Node2D
+@export var lose : Control
 var map_position : Vector2i
 var active_unit : Unit
 var click_state = 'select'
 var unit_nameplate
-var unit_icon
+var unit_hp_disp
 var playerUnits = []
 var enemyUnits = []
 var turn_num = 0
@@ -41,10 +42,12 @@ var wave_num = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	unit_nameplate = ui.get_child(0).get_child(1)
-	unit_icon = ui.get_child(0).get_child(0)	
+	unit_nameplate = ui.get_child(0).get_child(0)
+	unit_hp_disp = ui.get_child(0).get_child(1)	
 	ui.get_child(2).pressed.connect(self._end_turn)
+	ui.get_child(3).pressed.connect(self._quit)
 	building_select.visible = false
+	lose.visible = false
 	pass # Replace with function body.
 
 
@@ -52,7 +55,10 @@ func _ready():
 func _process(delta):
 	var new_position = board.get_map().local_to_map(get_global_mouse_position())
 	update_cursor(new_position)
-	
+	if new_position in board.map.get_used_cells(0):
+		if board.get_cell_data(new_position).occupant != null:
+			unit_nameplate.text = board.get_cell_data(new_position).occupant.unit_class
+			unit_hp_disp.text = "HP: "+str(board.get_cell_data(new_position).occupant.hp)
 	if Input.is_action_just_pressed("left_click"):
 		if over_ui == true:
 			return
@@ -158,8 +164,9 @@ func deselect():
 
 func _end_turn():
 	turn_num += 1
-	if playerUnits.size == 0:
-		
+	if playerUnits.size() == 0:
+		lose.visible = true
+		return
 	if enemyUnits.size() != 0:
 		for i in enemyUnits.size():
 			enemyUnits[i].getAIMVMT(enemyUnits[i].getboardpos())
@@ -228,3 +235,6 @@ func begin_placement(type : String):
 	building_select.visible = false
 	click_state = 'place'
 	place_type = type
+
+func _quit():
+	get_tree().quit()

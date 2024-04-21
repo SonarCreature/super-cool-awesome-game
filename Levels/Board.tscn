@@ -298,7 +298,7 @@ layer_1/tile_data = PackedInt32Array(0, 524289, 3, 65536, 524289, 4, 131072, 524
 layer_2/name = "Cursors"
 layer_2/tile_data = PackedInt32Array()
 layer_3/name = "Highlight"
-layer_3/modulate = Color(1, 1, 1, 0.45098)
+layer_3/modulate = Color(0, 1, 1, 0.45098)
 layer_3/tile_data = PackedInt32Array()
 
 [node name="AbilityManager" type="Node2D" parent="." node_paths=PackedStringArray("controller", "ui")]
@@ -306,11 +306,12 @@ script = ExtResource("4_eylhf")
 controller = NodePath("../BoardController")
 ui = NodePath("../CanvasLayer/Control")
 
-[node name="BoardController" type="Node2D" parent="." node_paths=PackedStringArray("ui", "building_select", "am")]
+[node name="BoardController" type="Node2D" parent="." node_paths=PackedStringArray("ui", "building_select", "am", "lose")]
 script = ExtResource("4_t1kwp")
 ui = NodePath("../CanvasLayer/Control")
 building_select = NodePath("../CanvasLayer/Control2")
 am = NodePath("../AbilityManager")
+lose = NodePath("../CanvasLayer/Control3")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -439,7 +440,7 @@ offset_right = 265.0
 offset_bottom = 212.5
 text = "Spawn a 
 Friendly Controllable 
-Skeleton Each Wave"
+Ghost Each Wave"
 horizontal_alignment = 1
 
 [node name="Select Tombstone" type="Button" parent="CanvasLayer/Control2/Select Building/Panel"]
@@ -452,9 +453,34 @@ text = "Select Tombstone"
 
 [node name="Control3" type="Control" parent="CanvasLayer"]
 layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control3"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/Control3/Panel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -96.0
+offset_top = -11.5
+offset_right = 96.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "The Rats Have Eaten You"
 
 [node name="CharacterBody2D" type="CharacterBody2D" parent="."]
 script = ExtResource("7_cc4g3")
