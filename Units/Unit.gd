@@ -3,11 +3,14 @@ class_name Unit extends Node2D
 @onready var controller = get_parent()
 var board_position : Vector2i = Vector2i(0,0)
 var movement = 3
+var augment = 0
+var armor = 0
 var move_cells = []
 var team = 'player'
 var hp = 5
 var acted = false
 var abilities = []
+var selection = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -85,4 +88,24 @@ func get_cost(cell : Vector2i):
 
 func get_move_cells():
 	return move_cells
+	
+func get_hp():
+	return hp
+func get_action():
+	return abilities[selection].ammount
+func take_damage(damage: int ):
+	hp = hp - augCalc(damage)
+func heal(damage: int):
+	hp = hp + damage
+func armorCalc(damage:int):
+	return damage-armor
+func damageBuff(damage: int):
+	return damage+augment
+func augCalc(damage:int):
+	damage = damage-armor
+	damage = damage+augment
+	return damage
+
+	
+
 

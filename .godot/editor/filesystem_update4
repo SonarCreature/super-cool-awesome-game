@@ -13,3 +13,6 @@ res://Units/Mage.tscn
 res://Units/Assassin.tscn
 res://Levels/UI.tscn
 res://Units/Grunt.tscn
+res://Units/Grunt.gd
+res://Units/Unit.gd
+res://Units/Rat.tscn
