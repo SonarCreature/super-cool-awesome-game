@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://1v88adfuxrea"]
+[gd_scene load_steps=8 format=3 uid="uid://1v88adfuxrea"]
 
 [ext_resource type="Script" path="res://Control.gd" id="1_lscsb"]
 [ext_resource type="Texture2D" uid="uid://bikbavq7tq33f" path="res://Art/Tilemaps/tilemap_packed.png" id="2_ko85v"]
@@ -142,6 +142,11 @@ texture = ExtResource("2_ko85v")
 [sub_resource type="TileSet" id="TileSet_el5hh"]
 sources/0 = SubResource("TileSetAtlasSource_5x6pi")
 
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_dicai"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_xbakv"]
+specular_color = Color(0.768627, 0, 0, 1)
+
 [node name="Control" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -171,13 +176,23 @@ layer_0/tile_data = PackedInt32Array(-65536, 65536, 0, 0, 0, 0, 65536, 65536, 0,
 layer_1/tile_data = PackedInt32Array(851966, 327680, 2, 262144, 327680, 2, 10, 327680, 2, 393227, 327680, 2, 131086, 327680, 2, 393232, 327680, 2, 196634, 327680, 2, 327708, 327680, 2)
 
 [node name="Play" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
-modulate = Color(1, 0.2, 1, 1)
+modulate = Color(0.647447, 0.120751, 0.209934, 1)
+material = SubResource("CanvasItemMaterial_dicai")
+use_parent_material = true
 layout_mode = 2
-text = "Play"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0.309748, 0.408369, 0.883841, 1)
+theme_override_colors/font_focus_color = Color(0.972549, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_colors/icon_normal_color = Color(0.843678, 0.0904776, 9.62615e-08, 1)
+theme_override_colors/icon_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/icon_hover_pressed_color = Color(1, 1, 1, 1)
+text = "𝙋𝙡𝙖𝙮"
 
 [node name="Options" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "Options"
+icon = SubResource("CanvasTexture_xbakv")
 
 [node name="Title" type="RichTextLabel" parent="MarginContainer/HBoxContainer/VBoxContainer/Options"]
 layout_mode = 0
@@ -225,9 +240,12 @@ offset_left = 127.0
 offset_top = -43.0
 offset_right = 389.0
 offset_bottom = 148.0
-text = "Welcome to rat slayer, here you will set off on your journey to slay rats!
+theme_override_colors/default_color = Color(1, 1, 1, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+text = "𝖂𝖊𝖑𝖈𝖔𝖒𝖊 𝖙𝖔 𝖗𝖆𝖙 𝖘𝖑𝖆𝖞𝖊𝖗, 𝖍𝖊𝖗𝖊 𝖞𝖔𝖚 𝖜𝖎𝖑𝖑 𝖘𝖊𝖙 𝖔𝖋𝖋 𝖔𝖓 𝖞𝖔𝖚𝖗 𝖏𝖔𝖚𝖗𝖓𝖊𝖞 𝖙𝖔 𝖘𝖑𝖆𝖞 𝖗𝖆𝖙𝖘!
 
-Upon each wave clear you will be able to construct one builing that with aid you on your quest to slay rats."
+𝖀𝖕𝖔𝖓 𝖊𝖆𝖈𝖍 𝖜𝖆𝖛𝖊 𝖈𝖑𝖊𝖆𝖗 𝖞𝖔𝖚 𝖜𝖎𝖑𝖑 𝖇𝖊 𝖆𝖇𝖑𝖊 𝖙𝖔 𝖈𝖔𝖓𝖘𝖙𝖗𝖚𝖈𝖙 𝖔𝖓𝖊 𝖇𝖚𝖎𝖑𝖎𝖓𝖌 𝖙𝖍𝖆𝖙 𝖜𝖎𝖙𝖍 𝖆𝖎𝖉 𝖞𝖔𝖚 𝖔𝖓 𝖞𝖔𝖚𝖗 𝖖𝖚𝖊𝖘𝖙 𝖙𝖔 𝖘𝖑𝖆𝖞 𝖗𝖆𝖙𝖘.
+"
 
 [node name="Exit" type="Button" parent="MarginContainer/HBoxContainer/VBoxContainer"]
 layout_mode = 2
