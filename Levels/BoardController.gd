@@ -92,4 +92,3 @@ func wipe_highlight():
 	for cell in board.map_data:
 		board.map.set_cell(3, cell, -1, Vector2(1,2))
 
-

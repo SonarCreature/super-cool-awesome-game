@@ -28,6 +28,15 @@ func display_movement():
 		controller.highlight_tile(cell)
 	return move_cells
 
+func find_range(range):
+	var temp = []
+	find_valid_range(board_position, 0, range, temp)
+	
+	for cell in temp:
+		if cell in controller.board.obstacles:
+			temp.erase(cell)
+	return temp
+
 func find_valid_movement(cell : Vector2i, cost : int):
 	var north = Vector2i(cell.x, cell.y - 1)
 	var south = Vector2i(cell.x, cell.y + 1)
@@ -47,6 +56,26 @@ func find_valid_movement(cell : Vector2i, cost : int):
 		find_valid_movement(south, cost + get_cost(south))
 		find_valid_movement(west, cost + get_cost(west))
 		find_valid_movement(north, cost + get_cost(north))
+
+func find_valid_range(cell : Vector2i, cost : int, range : int, final_array : Array):
+	var north = Vector2i(cell.x, cell.y - 1)
+	var south = Vector2i(cell.x, cell.y + 1)
+	var east = Vector2i(cell.x + 1, cell.y)
+	var west = Vector2i(cell.x - 1, cell.y)
+	if (cell in final_array)==true:	
+		if (north in final_array)==true:
+			if (south in final_array)==true:
+				if (east in final_array) == true:
+					if (west in final_array)==true:
+						return
+	if (cost > range):
+		return
+	else:
+		final_array.append(cell)
+		find_valid_range(east, cost + 1, range, final_array)
+		find_valid_range(south, cost + 1, range, final_array)
+		find_valid_range(west, cost + 1, range, final_array)
+		find_valid_range(north, cost + 1, range, final_array)
 
 
 func get_cost(cell : Vector2i):

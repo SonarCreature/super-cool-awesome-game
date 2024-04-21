@@ -6,3 +6,6 @@ res://Levels/BoardController.gd
 res://Units/Knight.gd
 res://Levels/AbilityManager.gd
 res://Levels/Board.gd
+res://Units/Rat.tscn
+res://Units/Rat.gd
+res://Units/Unit.gd

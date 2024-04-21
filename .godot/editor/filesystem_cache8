@@ -1,9 +1,10 @@
 ea4bc82a6ad023ab7ee23ee620429895
-::res://::1713659214
+::res://::1713661142
 Ability.gd::GDScript::-1::1713652781::0::1::::Ability<>RefCounted<>::
 CellData.gd::GDScript::-1::1713644440::0::1::::CellData<>Node<>::
 Control.gd::GDScript::-1::1713658957::0::1::::<>Control<>::
-::res://Art/::1713658957
+control.tscn::PackedScene::-1::1713659353::0::1::::<><>::
+::res://Art/::1713659215
 clawdius.png::CompressedTexture2D::580722082182874627::1713658957::1713658957::1::::<><>::
 icon.svg::CompressedTexture2D::2102778146010533061::1713631568::1713659215::1::::<><>::
 ::res://Art/Tilemaps/::1713633510
@@ -12,13 +13,15 @@ tilemap_packed.png::CompressedTexture2D::2968637056517934173::1713631568::171363
 ::res://Buildings/::1713658957
 Building.gd::GDScript::-1::1713658957::0::1::::Building<>Node2D<>::
 Building.tscn::PackedScene::8809001618080536781::1713658957::0::1::::<><>::uid://bikbavq7tq33f::::res://Art/Tilemaps/tilemap_packed.png<>uid://drqn5guqiox54::::res://Art/Tilemaps/tilemap_packed (2).png
-::res://Levels/::1713659092
-Board.gd::GDScript::-1::1713658957::0::1::::<>Node2D<>::
-Board.tscn::PackedScene::5933026420878719690::1713659091::0::1::::<><>::uid://bikbavq7tq33f::::res://Art/Tilemaps/tilemap_packed.png<>res://Levels/Board.gd<>uid://drqn5guqiox54::::res://Art/Tilemaps/tilemap_packed (2).png<>res://Levels/BoardController.gd<>uid://euroaaih6m32::::res://Levels/UI.tscn
-BoardController.gd::GDScript::-1::1713658957::0::1::::<>Node2D<>::
-UI.tscn::PackedScene::323100119999094507::1713659092::0::1::::<><>::
-::res://Units/::1713659091
-Knight.gd::GDScript::-1::1713652921::0::1::::<>Unit<>::
-Knight.tscn::PackedScene::6320453029935752542::1713659091::0::1::::<><>::res://Units/Knight.gd<>uid://drqn5guqiox54::::res://Art/Tilemaps/tilemap_packed (2).png
+::res://Levels/::1713661132
+AbilityManager.gd::GDScript::-1::1713661132::0::1::::<>Node2D<>::
+Board.gd::GDScript::-1::1713660942::0::1::::<>Node2D<>::
+Board.tscn::PackedScene::5933026420878719690::1713660974::0::1::::<><>::uid://bikbavq7tq33f::::res://Art/Tilemaps/tilemap_packed.png<>res://Levels/Board.gd<>uid://drqn5guqiox54::::res://Art/Tilemaps/tilemap_packed (2).png<>res://Levels/AbilityManager.gd<>res://Levels/BoardController.gd<>uid://euroaaih6m32::::res://Levels/UI.tscn
+BoardController.gd::GDScript::-1::1713660973::0::1::::<>Node2D<>::
+UI.tscn::PackedScene::323100119999094507::1713660974::0::1::::<><>::
+::res://Units/::1713661152
+Ghost.tscn::PackedScene::6272998310327095239::1713661152::0::1::::<><>::res://Units/Unit.gd<>uid://drqn5guqiox54::::res://Art/Tilemaps/tilemap_packed (2).png
+Knight.gd::GDScript::-1::1713659821::0::1::::<>Unit<>::
+Knight.tscn::PackedScene::6320453029935752542::1713660974::0::1::::<><>::res://Units/Knight.gd<>uid://drqn5guqiox54::::res://Art/Tilemaps/tilemap_packed (2).png
 Unit.gd::GDScript::-1::1713652029::0::1::::Unit<>Node2D<>::
-Unit.tscn::PackedScene::8257417278581893194::1713659091::0::1::::<><>::res://Units/Unit.gd<>uid://drqn5guqiox54::::res://Art/Tilemaps/tilemap_packed (2).png
+Unit.tscn::PackedScene::8257417278581893194::1713660974::0::1::::<><>::res://Units/Unit.gd<>uid://drqn5guqiox54::::res://Art/Tilemaps/tilemap_packed (2).png
